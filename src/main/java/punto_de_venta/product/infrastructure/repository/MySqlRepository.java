@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import punto_de_venta.product.domain.Product;
 import punto_de_venta.product.domain.ProductRepository;
+import punto_de_venta.product.infrastructure.entity.ProductEntity;
 import punto_de_venta.product.infrastructure.mapper.ProductMapper;
 
 import java.util.List;
@@ -17,36 +18,42 @@ public class MySqlRepository implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        return null;
+        ProductEntity productEntity = mapper.productToProductEntity(product);
+        ProductEntity productSave = springRepository.save(productEntity);
+        return mapper.productEntityToProduct(productSave);
     }
 
     @Override
     public List<Product> findAll() {
-        return List.of();
+        List<ProductEntity> productEntityList = springRepository.findAll();
+        List<Product> productList = productEntityList.stream()
+                .map(mapper::productEntityToProduct)
+                .toList();
+        return productList;
     }
 
     @Override
     public Optional<Product> findById(Long id) {
-        return Optional.empty();
+        return springRepository.findById(id).map(mapper::productEntityToProduct);
     }
 
     @Override
     public Boolean existsByName(String name) {
-        return null;
+        return springRepository.existsByName(name);
     }
 
     @Override
     public Boolean existsByNameAndIdNot(Long id, String name) {
-        return null;
+        return springRepository.existsByNameAndIdNot(id, name);
     }
 
     @Override
     public Boolean existsById(Long id) {
-        return null;
+        return springRepository.existsById(id);
     }
 
     @Override
     public void deleteByid(Long id) {
-
+        springRepository.deleteById(id);
     }
 }
