@@ -10,6 +10,12 @@ public interface ProductRepository {
 
     Optional<Product> findById(Long id);
 
+    Boolean existsByName(String name);
+
+    Boolean existsByNameAndIdNot(Long id, String name);
+
+    Boolean existsById(Long id);
+
     void deleteByid(Long id);
 
 }

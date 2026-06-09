@@ -31,6 +31,21 @@ public class MySqlRepository implements ProductRepository {
     }
 
     @Override
+    public Boolean existsByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Boolean existsByNameAndIdNot(Long id, String name) {
+        return null;
+    }
+
+    @Override
+    public Boolean existsById(Long id) {
+        return null;
+    }
+
+    @Override
     public void deleteByid(Long id) {
 
     }
