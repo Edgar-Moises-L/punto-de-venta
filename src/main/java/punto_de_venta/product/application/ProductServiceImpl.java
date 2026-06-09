@@ -23,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
         if (repository.existsByName(product.getName())) {
             throw new DuplicateResourceException("El producto que se esta intentando guardar ya existe");
         }
+
         return repository.save(product);
     }
 

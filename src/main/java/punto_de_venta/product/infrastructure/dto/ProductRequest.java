@@ -18,6 +18,10 @@ public class ProductRequest {
     @Size(max = 500, message = "La descripcion puede tener un maximo de 500 caracteres.")
     private String description;
 
+    @Pattern(
+            regexp = "^(ENTRADAS|NATURALES|EMPANIZADOS|HORNEADOS|ESPECIALES|BEBIDAS)$",
+            message = "El tipo de producto no es válido. Valores permitidos: [ENTRADAS, NATURALES, EMPANIZADOS, HORNEADOS, ESPECIALES, BEBIDAS]"
+    )
     @NotBlank(message = "El tipo de producto es obligatorio y debe contener caracteres válidos.")
     private String productType;
 
