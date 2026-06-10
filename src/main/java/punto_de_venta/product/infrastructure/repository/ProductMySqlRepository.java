@@ -12,8 +12,8 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
-public class MySqlRepository implements ProductRepository {
-    private final SpringRepository springRepository;
+public class ProductMySqlRepository implements ProductRepository {
+    private final ProductSpringRepository springRepository;
     private final ProductMapper mapper;
 
     @Override
