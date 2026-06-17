@@ -10,7 +10,7 @@ import punto_de_venta.product.infrastructure.entity.ProductEntity;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-09T14:35:09-0700",
+    date = "2026-06-17T12:32:33-0700",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Oracle Corporation)"
 )
 @Component
