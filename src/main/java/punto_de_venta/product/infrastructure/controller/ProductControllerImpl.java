@@ -49,7 +49,7 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> update(@Valid @PathVariable @RequestBody Long id, ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> update(@Valid @PathVariable Long id, @RequestBody ProductRequest productRequest) {
         Product product = mapper.productRequestToProduct(productRequest);
         Product productUpdate = service.updateProduct(id, product);
         ProductResponse productResponse = mapper.productToProductResponse(productUpdate);
@@ -60,6 +60,6 @@ public class ProductControllerImpl implements ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.deleteProduct(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 }
