@@ -1,6 +1,7 @@
 package punto_de_venta.product.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface ProductRepository {
@@ -18,4 +19,5 @@ public interface ProductRepository {
 
     void deleteByid(Long id);
 
+    Map<Long, Double> findPriceByIds(List<Long> ids);
 }

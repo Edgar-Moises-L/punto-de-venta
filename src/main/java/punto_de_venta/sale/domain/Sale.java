@@ -1,12 +1,12 @@
 package punto_de_venta.sale.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sale {
     private Long id;
-    private LocalDateTime fechaVenta;
+    private LocalDate fechaVenta;
     private Double total;
     private List<SaleDetails> details = new ArrayList<>();
 
@@ -14,7 +14,7 @@ public class Sale {
 
     }
 
-    public Sale(Long id, LocalDateTime fechaVenta, Double total, List<SaleDetails> details) {
+    public Sale(Long id, LocalDate fechaVenta, Double total, List<SaleDetails> details) {
         this.id = id;
         this.fechaVenta = fechaVenta;
         this.total = total;
@@ -29,11 +29,11 @@ public class Sale {
         this.id = id;
     }
 
-    public LocalDateTime getFechaVenta() {
+    public LocalDate getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(LocalDateTime fechaVenta) {
+    public void setFechaVenta(LocalDate fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 

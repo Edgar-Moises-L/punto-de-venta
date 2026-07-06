@@ -8,9 +8,9 @@ import punto_de_venta.exceptions.domain.ResoursceNotFoundException;
 import punto_de_venta.product.domain.Product;
 import punto_de_venta.product.domain.ProductRepository;
 import punto_de_venta.product.domain.ProductService;
-import punto_de_venta.product.infrastructure.entity.ProductEntity;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -23,7 +23,6 @@ public class ProductServiceImpl implements ProductService {
         if (repository.existsByName(product.getName())) {
             throw new DuplicateResourceException("El producto que se esta intentando guardar ya existe");
         }
-
         return repository.save(product);
     }
 
@@ -34,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductByid(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ResoursceNotFoundException("El producto que se quiere eliminar no existe"));
+        return repository.findById(id).orElseThrow(() -> new ResoursceNotFoundException("El producto no existe"));
     }
 
     @Override
@@ -62,6 +61,11 @@ public class ProductServiceImpl implements ProductService {
             throw new ResoursceNotFoundException("El producto que se quiere eliminar no existe");
         }
         repository.deleteByid(id);
+    }
+
+    @Override
+    public Map<Long, Double> findPricesByIds(List<Long> ids) {
+        return repository.findPriceByIds(ids);
     }
 
 }

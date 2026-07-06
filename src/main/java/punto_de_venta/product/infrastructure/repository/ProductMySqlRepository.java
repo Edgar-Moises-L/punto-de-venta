@@ -2,13 +2,17 @@ package punto_de_venta.product.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import punto_de_venta.exceptions.domain.ResoursceNotFoundException;
 import punto_de_venta.product.domain.Product;
 import punto_de_venta.product.domain.ProductRepository;
 import punto_de_venta.product.infrastructure.entity.ProductEntity;
 import punto_de_venta.product.infrastructure.mapper.ProductMapper;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Repository
@@ -55,5 +59,19 @@ public class ProductMySqlRepository implements ProductRepository {
     @Override
     public void deleteByid(Long id) {
         springRepository.deleteById(id);
+    }
+
+    @Override
+    public Map<Long, Double> findPriceByIds(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            throw new ResoursceNotFoundException("No se encontraron los precios de los productos");
+        }
+        List<Object[]> results = springRepository.findPricesByIds(ids);
+
+        return results.stream()
+                .collect(Collectors.toMap(
+                        row -> ((Number) row[0]).longValue(),
+                        row -> ((Number) row[1]).doubleValue()
+                ));
     }
 }

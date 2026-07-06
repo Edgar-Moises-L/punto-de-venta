@@ -11,6 +11,6 @@ public interface SaleService {
 
     Sale updateSale(Long id, Sale sale);
 
-    Void deleteSale(Long id);
+    void deleteSale(Long id);
 
 }

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class SaleEntity {
     private Long id;
 
     @Column(name = "fecha_venta", nullable = false)
-    private LocalDateTime fechaVenta;
+    private LocalDate fechaVenta;
 
     @Column(nullable = false)
     private Double total;
